@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+<head>
+    <meta charset="UTF-8"/>
+    <title>A date range picker for Bootstrap</title>
+
+    <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" />-->
+
+    <link rel="stylesheet" type="text/css" media="all" href="daterangepicker.css"/>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.1/moment.min.js"></script>
+
+    <script type="text/javascript" src="daterangepicker.js"></script>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body style="margin: 60px 0">
+
+<div class="container">
+
+    <div class="divForDateRangePicker">
+        <input type="text" id="daterangepicker" >
+    </div>
+
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        var daterangepicker = $("#daterangepicker").daterangepicker({
+            parentEl: ".divForDateRangePicker",
+            timePicker: true,
+            timePicker24Hour: true,
+            // timePickerIncrement: 5,
+            autoUpdateInput: true,
+            showCustomRangeLabel: false,
+            alwaysShowCalendars: true,
+            startDate: "01/05/2019 00:00",
+            endDate: "06/05/2019 23:59",
+            ranges: {
+                "დღეს": [moment(), moment()],
+                "ხვალ": [moment().add(1, "days"), moment().add(1, "days")],
+                "კვირის ბოლომდე": [moment().subtract(6, "days"), moment()],
+                "მომდევნო 7 დღე": [moment().subtract(29, "days"), moment()],
+                "მომდევნო 30 დღე": [moment().startOf("month"), moment().endOf("month")],
+            },
+            locale: {
+                format: "DD/MM/YYYY HH:mm",
+                customRangeLabel: "Custom",
+                daysOfWeek: [
+                    "კვ",
+                    "ორ",
+                    "სა",
+                    "ოთ",
+                    "ხუ",
+                    "პა",
+                    "შა"
+                ],
+                monthNames: [
+                    "იანვარი",
+                    "თებერვალი",
+                    "მარტი",
+                    "აპრილი",
+                    "მაისი",
+                    "ივნისი",
+                    "ივლისი",
+                    "აგვისტო",
+                    "სექტემბერი",
+                    "ოქტომბერი",
+                    "ნოემბერი",
+                    "დეკემბერი"
+                ],
+                firstDay: 1
+            }
+        });
+
+        // prevent hide after range selection
+        //daterangepicker.data("daterangepicker").hide = function () {};
+
+        // show picker on load
+        daterangepicker.data("daterangepicker").show();
+
+    });
+</script>
+
+<style>
+
+    .divForDateRangePicker .daterangepicker {
+        position: initial;
+        top: auto;
+        left: auto;
+        float: left;
+        margin-top: 0;
+        font-family: inherit;
+    }
+
+    .divForDateRangePicker .daterangepicker::before,
+    .divForDateRangePicker .daterangepicker::after
+    {
+        display: none;
+    }
+
+    .divForDateRangePicker .daterangepicker .drp-calendar {
+        /*width: 350px;*/
+    }
+
+    .divForDateRangePicker .daterangepicker .drp-buttons {
+        /*display: none;*/
+    }
+
+    .divForDateRangePicker .daterangepicker select.hourselect,
+    .divForDateRangePicker .daterangepicker select.minuteselect,
+    .divForDateRangePicker .daterangepicker select.secondselect,
+    .divForDateRangePicker .daterangepicker select.ampmselect
+    {
+        background-color: transparent;
+        border-radius: 3px;
+    }
+
+</style>
+
+</body>
+</html>
