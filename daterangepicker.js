@@ -373,7 +373,7 @@
 
         //can't be used together for now
         if (this.timePicker && this.autoApply)
-            this.autoApply = false;
+            //this.autoApply = false;
 
         if (this.autoApply) {
             this.container.addClass('auto-apply');
@@ -1213,8 +1213,6 @@
                     this.endDate.endOf('day');
                 // }
 
-                console.log(this.endDate);
-
                 if (!this.alwaysShowCalendars)
                     this.hideCalendars();
                 this.clickApply();
@@ -1404,8 +1402,8 @@
         },
 
         clickApply: function (e) {
-            this.hide();
             this.element.trigger('apply.daterangepicker', this);
+            this.hide();
         },
 
         clickCancel: function (e) {
@@ -1505,6 +1503,11 @@
             //re-render the time pickers because changing one selection can affect what's enabled in another
             this.renderTimePicker('left');
             this.renderTimePicker('right');
+
+            if (this.autoApply) {
+                this.calculateChosenLabel();
+                this.clickApply();
+            }
 
         },
 

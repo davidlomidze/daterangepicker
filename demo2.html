@@ -37,6 +37,7 @@
             parentEl: ".divForDateRangePicker",
             timePicker: true,
             timePicker24Hour: true,
+            autoApply: true,
             // timePickerIncrement: 5,
             autoUpdateInput: true,
             showCustomRangeLabel: false,
@@ -85,6 +86,10 @@
 
         // show picker on load
         daterangepicker.data("daterangepicker").show();
+
+        daterangepicker.on("apply.daterangepicker", function(event, picker) {
+            console.log("[DatesModalForm][apply.daterangepicker]", event, picker);
+        });
 
     });
 </script>
